@@ -1,0 +1,37 @@
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<div id='app'>
+<div v-if='isError'>
+There was an error
+</div>
+<div v-else-if='isLoading'>
+Loading
+</div>
+<div v-else>
+ <select v-model="selectedUser">
+      <option v-for="person in info" v-bind:value="person"> {{person.name}}</option>
+ </select>
+</div>
+<div class="posts">
+  <div v-if="isLoadingPosts">
+  Loading...
+  </div>
+  <div v-else>
+    <ul>
+      <li v-for="post in postData">
+      <p>
+      {{ post.body }}
+      </p>
+       <button  v-on:click='getComments(post.id)'>
+      View Comments
+      </button>
+      </li>
+     
+    </ul>
+  </div>
+</div>
+<div class="comments">
+<p>
+{{ commentData }}
+</p>
+</div>
+</div>
